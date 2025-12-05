@@ -1,91 +1,35 @@
-# 📒 Ensolvers Notes App — Full Stack Implementation Exercise
+Full Stack Implementation Exercise
+1. Requirements / Intro
+You need to implement a simple web application that allows you to take notes, tag, and filter them. The development is divided into two phases:
 
-This project is a full-stack notes management SPA that allows users to create, edit, delete, archive, and categorize notes. It was developed as part of the **Ensolvers Hiring Technical Challenge**.
+Phase 1: Note creation
+Phase 2: Tag application and filtering
+IMPORTANT CONSIDERATIONS:
+Phase 1 is mandatory to pass this exercise, while Phase 2 will provide extra points if done.
+Content should be persisted in a relational database by using an ORM - in-memory storage or mocks are not allowed.
+2. Deliverables
+To pass this exercise, in addition to the implementation, you must:
 
-The app consists of a **React frontend**, and a **Node.js + Express + Prisma backend**, with **SQLite persistence** and **JWT authentication**.
+Upload the code to a private GitHub repository given by Ensolvers HR staff and use git properly. Both the frontend and the backend should be pushed to that repository, in folders named backend and frontend respectively.
+Include a bash/zsh script allowing to run the app. Ideally, the app should start in a Linux/macOS environment just by running one command. This command should set up everything that is required to run the app, like setting up a DB schema, pre-creating any config file, etc.
+Include a README.md file describing all the runtimes, engines, tools, etc., required to run the app, with their concrete versions (e.g., npm 18.17, etc).
+3. Technologies
+There is no restriction about the technology to be used, provided that:
 
----
-
-##  Features
-
-### ✔ Phase 1 (Required)
-- Create notes
-- Edit notes
-- Delete notes
-- Archive / Unarchive notes
-- List active notes
-- List archived notes
-
-###  Phase 2 (Extra Points)
-- Add / remove categories to notes
-- Filter notes by category
-
-###  Additional Features
-- Login screen with authentication
-- JWT-protected note & category endpoints
-- Password encryption with bcrypt
-- Relational DB using Prisma ORM (no mock or in-memory DB)
-
----
-
-##  Technologies Used
-
-| Layer | Technology |
-|-------|------------|
-| Frontend | React + Vite + TypeScript |
-| Backend | Node.js + Express + TypeScript |
-| ORM | Prisma |
-| Database | SQLite |
-| Auth | JWT + bcrypt |
-
----
-
-##  Requirements
-
-| Tool | Version |
-|------|--------|
-| Node.js | 18.x or higher |
-| npm | 9.x or higher |
-| Bash/Zsh | Required for running the startup script |
-| SQLite | Installed automatically via Prisma |
-
----
-
-##  Default Login Credentials
-
-| Field | Value |
-|-------|-------|
-| **Email** | `admin@example.com` |
-| **Password** | `admin123` |
-
-These are automatically created on server startup.
-
----
-##  Quick Start (Linux/macOS)
-
-The entire application (backend + frontend + DB setup) can be started with **one command**.
-
-###  Run the setup script
-
-```bash
-chmod +x run.sh
-./run.sh
-
-Running Manually 
-Backend
-cd backend
-npm install
-npx prisma migrate dev
-npm run dev
-
-Frontend
-cd frontend
-npm install
-npm run dev
-
-API Authentication
-
-All note and category endpoints are protected via JWT.
-Requests must include the token in the header:
-
-Authorization: Bearer <token>
+Structure the app as a Single Page Web Application (SPA), i.e., frontend and backend are different apps. This is the general case when you use React, Angular, Vue.js, or any other similar UI framework. Please consider that rendering a web page on the server-side (by using JSP, EJS, Smarty, Blade, etc.) but using a bit of JS to, for instance, fetch some data, is not a pure SPA. You need to implement an isolated app, in a separate folder, with its custom package.json and dependencies.
+The backend app exposes a REST API for communication with the frontend.
+The backend app is separated into layers (e.g., Controllers, Services, DAOs/Repositories). It is important to mention that Laravel (PHP) and Django (Python) DO NOT SUPPORT that layer separation by default when building apps, so if you submit a backend done directly with those technologies without any further adjustment in the architecture, it might probably need to be improved or the exercise will be rejected directly. On the other hand, Spring Boot (Java) and Nestjs (Node.js) are two technologies that enforce and/or ease the use of this layer separation. For more information, you can check the definition of the Service Layer pattern and an example in Spring Boot
+4. User Stories and Mockups
+Phase 1
+User Stories
+As a user, I want to be able to create, edit, and delete notes.
+As a user, I want to archive/unarchive notes.
+As a user, I want to list my active notes.
+As a user, I want to list my archived notes.
+Phase 2
+User Stories
+As a user, I want to be able to add/remove categories to notes.
+As a user, I want to be able to filter notes by category.
+5. Extra Functional and Non-Functional Requirements
+Login: If you provide a login screen, document the default user/password in README.md.
+Live deployed version: If you deploy the app (e.g., via Heroku), add the URL of the live running version to README.md.
