@@ -24,4 +24,11 @@ router.patch("/:id/archive", noteController.archiveNote);
 // PATCH /api/notes/:id/unarchive
 router.patch("/:id/unarchive", noteController.unarchiveNote);
 
+// POST /api/notes/:id/categories/:categoryId
+router.post("/:id/categories/:categoryId", noteController.addCategory);
+
+// DELETE /api/notes/:id/categories/:categoryId
+router.delete("/:id/categories/:categoryId", noteController.removeCategory);
+
+
 export default router;

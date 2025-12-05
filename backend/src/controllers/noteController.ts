@@ -4,10 +4,13 @@ import * as noteService from "../services/noteService";
 export async function listNotes(req: Request, res: Response) {
   try {
     const archivedParam = req.query.archived as string | undefined;
+    const categoryIdParam = req.query.categoryId as string | undefined;
+
     const archived =
       archivedParam === undefined ? undefined : archivedParam === "true";
+    const categoryId = categoryIdParam ? Number(categoryIdParam) : undefined;
 
-    const notes = await noteService.listNotes({ archived });
+    const notes = await noteService.listNotes({ archived, categoryId });
     res.json(notes);
   } catch (err) {
     console.error(err);
@@ -79,5 +82,29 @@ export async function unarchiveNote(req: Request, res: Response) {
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: "Error unarchiving note" });
+  }
+}
+
+export async function addCategory(req: Request, res: Response) {
+  try {
+    const noteId = Number(req.params.id);
+    const categoryId = Number(req.params.categoryId);
+    const note = await noteService.addCategoryToNote(noteId, categoryId);
+    res.json(note);
+  } catch (err: any) {
+    console.error(err);
+    res.status(400).json({ message: err.message || "Error adding category to note" });
+  }
+}
+
+export async function removeCategory(req: Request, res: Response) {
+  try {
+    const noteId = Number(req.params.id);
+    const categoryId = Number(req.params.categoryId);
+    const note = await noteService.removeCategoryFromNote(noteId, categoryId);
+    res.json(note);
+  } catch (err: any) {
+    console.error(err);
+    res.status(400).json({ message: err.message || "Error removing category from note" });
   }
 }
